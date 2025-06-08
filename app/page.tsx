@@ -120,16 +120,6 @@ export default function PeekabooLandingPage() {
                 </Link>
               </Button>
             ))}
-            <Button
-              variant="outline"
-              size="sm"
-              asChild
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-            >
-              <Link href={`${GITHUB_URL}/releases`} target="_blank" rel="noopener noreferrer">
-                <Download className="h-4 w-4 mr-2" /> Download
-              </Link>
-            </Button>
           </nav>
         </div>
       </header>
@@ -154,7 +144,7 @@ export default function PeekabooLandingPage() {
                 />
                 <h1
                   className="text-4xl font-black tracking-tighter sm:text-5xl md:text-6xl xl:text-7xl/none leading-tight
-                               bg-clip-text text-transparent bg-gradient-to-br from-slate-50 via-slate-200 to-primary"
+                           bg-clip-text text-transparent bg-gradient-to-br from-slate-50 via-slate-200 to-primary"
                 >
                   Give Your AI Agents <span className="text-primary">Supernatural Vision</span> on macOS.
                 </h1>
@@ -402,22 +392,6 @@ export default function PeekabooLandingPage() {
                   ))}
                 </ul>
               </div>
-              <div className="relative h-80 lg:h-96 bg-card/50 p-6 rounded-lg border border-primary/20 shadow-xl">
-                <pre className="text-xs text-muted-foreground overflow-auto h-full font-mono whitespace-pre-wrap">
-                  {`AI Agent <---> Peekaboo MCP Server (Node.js/TypeScript)
-  |
-  |--- Calls ---> Swift CLI (peekaboo)
-                  |
-                  |--- Uses ---> macOS ScreenCaptureKit
-                  |             |
-                  |             +---> Screen/Window Pixels
-                  |
-                  |--- Optionally ---> AI Vision Models (Ollama/OpenAI/etc.)
-                                      |
-                                      +---> Analysis Text`}
-                </pre>
-                <div className="absolute -top-3 -left-3 -right-3 -bottom-3 rounded-lg border-2 border-primary animate-pulse opacity-30 pointer-events-none"></div>
-              </div>
             </div>
             <div className="text-center mt-16">
               <Button variant="link" asChild className="text-primary text-lg">
@@ -457,7 +431,7 @@ export default function PeekabooLandingPage() {
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground text-lg px-10 py-6"
             >
               <Link href={`${GITHUB_URL}#installation`} target="_blank" rel="noopener noreferrer">
-                Full Installation & Configuration Guide <BookOpen className="ml-3 h-5 w-5" />
+                Full Installation Guide <BookOpen className="ml-3 h-5 w-5" />
               </Link>
             </Button>
             <p className="text-sm text-muted-foreground mt-6">
