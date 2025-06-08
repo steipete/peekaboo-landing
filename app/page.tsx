@@ -357,8 +357,12 @@ export default function PeekabooLandingPage() {
         <section id="tech" className="w-full py-16 md:py-24 lg:py-32 bg-muted/30">
           <div className="container px-4 md:px-6">
             <SectionTitle icon={Cpu}>Tech & Architecture</SectionTitle>
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
+            <div className="max-w-3xl mx-auto">
+              {" "}
+              {/* Centering the block */}
+              <div className="space-y-6 text-center md:text-left">
+                {" "}
+                {/* Content itself, text-center for small, left for md+ */}
                 <h3 className="text-3xl font-semibold">
                   TypeScript <span className="text-primary">&</span> Swift: The Best of Both Worlds
                 </h3>
@@ -366,7 +370,9 @@ export default function PeekabooLandingPage() {
                   Peekaboo leverages TypeScript for its robust MCP SDK support and easy npm distribution, while a native
                   Swift CLI provides direct, high-performance access to macOS's ScreenCaptureKit.
                 </p>
-                <ul className="space-y-3">
+                <ul className="space-y-3 inline-block md:text-left">
+                  {" "}
+                  {/* inline-block for centering list items when text is centered */}
                   {[
                     {
                       icon: Zap,
