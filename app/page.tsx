@@ -1,3 +1,5 @@
+"use client"
+
 import type React from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -22,8 +24,6 @@ import {
   Package,
   BookOpen,
   Settings2,
-  AlertTriangle,
-  TestTube2,
   Code2,
   Ghost,
   Newspaper,
@@ -142,10 +142,7 @@ export default function PeekabooLandingPage() {
                   className="rounded-lg shadow-2xl shadow-primary/20 animate-ghost-float"
                   priority
                 />
-                <h1
-                  className="text-4xl font-black tracking-tighter sm:text-5xl md:text-6xl xl:text-7xl/none leading-tight
-                           bg-clip-text text-transparent bg-gradient-to-br from-slate-50 via-slate-200 to-primary"
-                >
+                <h1 className="text-4xl font-black tracking-tighter sm:text-5xl md:text-6xl xl:text-7xl leading-tight bg-clip-text text-transparent bg-gradient-to-br from-slate-50 via-slate-200 to-primary">
                   Give Your AI Agents <span className="text-primary">Supernatural Vision</span> on macOS.
                 </h1>
                 <p className="max-w-[600px] text-muted-foreground md:text-xl text-lg">
@@ -446,41 +443,47 @@ export default function PeekabooLandingPage() {
           </div>
         </section>
 
-        {/* Troubleshooting & Support Teaser */}
-        <section id="support" className="w-full py-16 md:py-24 lg:py-32 bg-muted/30">
+        {/* Newsletter Signup Section */}
+        <section id="newsletter" className="w-full py-16 md:py-24 lg:py-32 bg-muted/30">
           <div className="container px-4 md:px-6 text-center">
-            <SectionTitle icon={AlertTriangle}>Troubleshooting & Support</SectionTitle>
-            <p className="max-w-2xl mx-auto text-muted-foreground md:text-xl mb-8">
-              Encountered a mischievous spirit in the machine? The GitHub README provides comprehensive troubleshooting
-              tips, common issues, and ways to get help.
+            <SectionTitle icon={Newspaper}>Spooky links straight to your inbox</SectionTitle>
+            <p className="max-w-xl mx-auto text-muted-foreground md:text-xl mb-10">
+              Subscribe to the Peekaboo newsletter for updates, tips, and insights on AI vision for macOS.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
-              <FeatureCard
-                icon={TestTube2}
-                title="Testing & Debugging"
-                description="Use MCP Inspector or direct CLI testing. Enable debug mode for detailed logs."
-              />
-              <FeatureCard
-                icon={BookMarked}
-                title="Common Issues"
-                description="Solutions for permissions, AI analysis failures, CLI problems, and more."
-              />
-              <FeatureCard
-                icon={Github}
-                title="Get Help"
-                description="Report issues, join discussions, or dive into the documentation on GitHub."
-              />
-            </div>
-            <Button
-              size="lg"
-              variant="default"
-              asChild
-              className="bg-primary text-primary-foreground hover:bg-emerald-500 text-lg px-10 py-6"
+            <form
+              action="https://buttondown.email/api/emails/embed-subscribe/steipete"
+              method="post"
+              target="popupwindow"
+              onSubmit={(e) => {
+                // Prevent default if you want to handle submission via JS,
+                // but for simple embed, Buttondown handles it.
+                // Consider adding JS for AJAX submission for better UX later.
+                window.open("https://buttondown.email/steipete", "popupwindow", "scrollbars=yes,width=800,height=600")
+                return true
+              }}
+              className="max-w-md mx-auto flex flex-col sm:flex-row gap-4 items-center justify-center"
             >
-              <Link href={`${GITHUB_URL}#troubleshooting`} target="_blank" rel="noopener noreferrer">
-                Visit Troubleshooting Guide <Wrench className="ml-3 h-5 w-5" />
-              </Link>
-            </Button>
+              <input type="hidden" value="peekaboo" name="tag" />
+              <label htmlFor="bd-email" className="sr-only">
+                Email Address
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="bd-email"
+                placeholder="ghost@example.com"
+                required
+                className="flex-grow w-full sm:w-auto px-4 py-3 rounded-md bg-card border border-border focus:ring-2 focus:ring-primary focus:border-primary text-foreground placeholder-muted-foreground"
+              />
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-emerald-500 shadow-md hover:shadow-primary/40 transition-all duration-300 transform hover:scale-105"
+              >
+                Submit
+              </Button>
+            </form>
+            <p className="text-sm text-muted-foreground mt-6">2× per month, pure signal, zero fluff.</p>
           </div>
         </section>
 
