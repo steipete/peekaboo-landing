@@ -1,37 +1,75 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider" // Assuming you still want theme toggling ability
+import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Peekaboo MCP: macOS Screenshots for AI Agents",
+  title: "Peekaboo: AI Vision for macOS | Fast Screen Capture & VQA",
   description:
-    "Lightning-fast, non-intrusive macOS screen capture and visual question answering for AI agents. Give your AI eyes with Peekaboo.",
+    "Peekaboo empowers AI agents with lightning-fast, non-intrusive screen capture and Visual Question Answering (VQA) on macOS. Give your AI eyes!",
+  keywords:
+    "Peekaboo, macOS, AI, screen capture, VQA, visual question answering, AI agents, macOS automation, ScreenCaptureKit, Ollama, GPT-4o, Claude, LLaVA, Qwen2-VL, developer tools, AI vision",
+  authors: [{ name: "Peter Steinberger", url: "https://steipete.me" }],
+  creator: "Peter Steinberger",
+  publisher: "Peter Steinberger",
   openGraph: {
-    title: "Peekaboo MCP: macOS Screenshots for AI Agents",
-    description: "Empower your AI agents with vision on macOS. Capture, analyze, and understand screen content.",
+    title: "Peekaboo: AI Vision for macOS | Fast Screen Capture & VQA",
+    description:
+      "Empower your AI agents with vision on macOS. Capture, analyze, and understand screen content with Peekaboo.",
+    url: "https://peekaboo.dev", // Assuming this is your production URL
+    siteName: "Peekaboo MCP",
     images: [
       {
-        url: "/peekaboo-banner.png", // Make sure this path is correct
+        url: "https://peekaboo.dev/peekaboo-banner.png", // Use absolute URL for OG images
         width: 1200,
         height: 630,
-        alt: "Peekaboo MCP Banner",
+        alt: "Peekaboo MCP Banner - A friendly ghost with a camera giving AI vision on macOS",
       },
     ],
-    siteName: "Peekaboo MCP",
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Peekaboo MCP: macOS Screenshots for AI Agents",
-    description: "Lightning-fast macOS screen capture for AI. Give your AI eyes!",
-    images: ["/peekaboo-banner.png"], // Make sure this path is correct
+    title: "Peekaboo: AI Vision for macOS | Fast Screen Capture & VQA",
+    description: "Lightning-fast macOS screen capture & VQA for AI agents. Give your AI eyes with Peekaboo!",
+    site: "@steipete", // Replace with your Twitter handle if available
+    creator: "@steipete", // Replace with your Twitter handle if available
+    images: ["https://peekaboo.dev/peekaboo-banner.png"], // Use absolute URL for Twitter images
+  },
+  icons: {
+    icon: "/favicon.ico", // Main favicon
+    shortcut: "/favicon.ico", // For older browsers
+    apple: "/apple-touch-icon.png", // Consider adding an apple-touch-icon
+  },
+  manifest: "/site.webmanifest", // Consider adding a web app manifest
+  robots: {
+    // Basic robots configuration
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
     generator: 'v0.dev'
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    // Match your dark theme
+    { media: "(prefers-color-scheme: dark)", color: "#0D0C0F" }, // Your dark background
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" }, // Fallback light color
+  ],
+  colorScheme: "dark", // Default to dark as per your site
 }
 
 export default function RootLayout({
@@ -41,17 +79,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
+      <head>
+        {/* The <link rel="icon" href="/favicon.ico" /> is now handled by Next.js metadata API's `icons` field */}
+      </head>
       <body className={`${inter.className} bg-background text-foreground`}>
-        {/* ThemeProvider can be used if you want to allow users to switch themes,
-            otherwise, if it's always dark, you might not need it.
-            Forcing dark via html class and style={{ colorScheme: 'dark' }}
-        */}
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false} // If you only want dark, disable system preference
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <Suspense>{children}</Suspense>
         </ThemeProvider>
         <Analytics />
